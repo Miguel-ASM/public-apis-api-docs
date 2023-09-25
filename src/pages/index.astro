@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Search from "../components/Search.astro";
+
+const query = Astro.url.searchParams.get("query");
+console.log(query);
+
+let results = [];
+
+const apisEndpoint = new URL("https://public-apis-api.onrender.com/api/search");
+apisEndpoint.searchParams.append("query", query);
+
+if (query) {
+  const apis = await fetch(apisEndpoint).then((r) => r.json());
+  results = apis.results;
+}
+---
+
+<Layout title="The public APIs API">
+  <Hero />
+  <div class="flex flex-col gap-y-12 w-full lg:px-32">
+    <Search results={results} />
+  </div>
+</Layout>
