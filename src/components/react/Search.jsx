@@ -22,11 +22,8 @@ export default function Search({ searchExamples = [] }) {
   };
 
   return (
-    <section className="results-center flex w-full flex-col">
-      <h2
-        id="search-section"
-        className="mb-4 text-3xl font-bold tracking-tight text-gray-900"
-      >
+    <section id="search-section" className="flex w-full flex-col">
+      <h2 className="mb-4 text-3xl font-bold tracking-tight text-gray-900">
         Search
       </h2>
       <form
