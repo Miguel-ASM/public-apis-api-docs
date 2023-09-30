@@ -1,15 +1,16 @@
 import { useState } from "react";
+import searchApis from "../../services/search-apis";
 
 import "./Search.css";
 
 export default function Search({ searchExamples = [] }) {
   const [results, setResults] = useState([]);
   const [submitEnabled, setsubmitEnabled] = useState(false);
-  const doPerformSearch = async (value) => {
-    const url = new URL("https://public-apis-api.onrender.com/api/search");
-    url.searchParams.append("query", value);
-    const response = await fetch(url).then((r) => r.json());
-    setResults(response?.results || []);
+
+  const doPerformSearch = (value) => {
+    searchApis({ query: value }).then(({ results }) => {
+      setResults(results || []);
+    });
   };
 
   const submitSearch = async (e) => {
