@@ -1,24 +1,20 @@
 import { useState } from "react";
 import searchApis from "../../services/search-apis";
+import usePublicApis from "./hooks/use-public-apis";
 
 import "./Search.css";
 
 export default function Search({ searchExamples = [] }) {
-  const [results, setResults] = useState([]);
+  const { apiSearchResponse, search } = usePublicApis();
+  const { results } = apiSearchResponse;
   const [submitEnabled, setsubmitEnabled] = useState(false);
-
-  const doPerformSearch = (value) => {
-    searchApis({ query: value }).then(({ results }) => {
-      setResults(results || []);
-    });
-  };
 
   const submitSearch = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const query = formData.get("query");
     if (!query) return;
-    await doPerformSearch(formData.get("query"));
+    await search({ query });
     e.target.reset();
   };
 

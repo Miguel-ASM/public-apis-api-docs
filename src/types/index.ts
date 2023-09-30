@@ -1,11 +1,11 @@
 export type SearchApisInput = {
   query: string;
-  page: string;
+  page?: number;
 };
 
 export type SearchApisResponse = {
-  total_hits: number;
-  page_size: number;
+  total_hits: number | undefined;
+  page_size: number | undefined;
   results: ApiResult[];
 };
 
