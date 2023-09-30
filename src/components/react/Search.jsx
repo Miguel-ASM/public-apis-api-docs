@@ -1,5 +1,4 @@
 import { useState } from "react";
-import searchApis from "../../services/search-apis";
 import usePublicApis from "./hooks/use-public-apis";
 
 import "./Search.css";

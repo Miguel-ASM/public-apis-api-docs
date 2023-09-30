@@ -2,9 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import Search from "../components/react/Search.jsx";
-
-const query = Astro.url.searchParams.get("query");
-console.log(query);
+import ApiSearch from "../components/react/ApiSearch";
 
 const searchExamples = [
   "videogames and comics",
@@ -19,6 +17,9 @@ const searchExamples = [
     <Search
       client:idle
       searchExamples={searchExamples}
+    />
+    <ApiSearch
+      client:idle
     />
   </div>
 </Layout>
