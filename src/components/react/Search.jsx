@@ -1,12 +1,19 @@
 import { useState } from "react";
 import usePublicApis from "./hooks/use-public-apis";
+import ReactPaginate from "react-paginate";
 
 import "./Search.css";
 
 export default function Search({ searchExamples = [] }) {
-  const { apiSearchResponse, search } = usePublicApis();
-  const { results } = apiSearchResponse;
   const [submitEnabled, setsubmitEnabled] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const { apiSearchResponse, search } = usePublicApis();
+  const { results, page_size, total_hits } = apiSearchResponse;
+
+  const pageCount =
+    total_hits !== undefined ? Math.ceil(total_hits / page_size) : 0;
+
+  console.log(pageCount);
 
   const submitSearch = async (e) => {
     e.preventDefault();
@@ -74,6 +81,18 @@ export default function Search({ searchExamples = [] }) {
           </li>
         ))}
       </ul>
+      <ReactPaginate
+        containerClassName="w-full flex justify-between px-20"
+        activeClassName="bg-indigo-500"
+        breakLabel="..."
+        nextLabel="next >"
+        forcePage={currentPage - 1}
+        onPageChange={({ selected }) => setCurrentPage(selected)}
+        marginPagesDisplayed={1}
+        pageCount={pageCount}
+        previousLabel="< previous"
+        renderOnZeroPageCount={null}
+      />
     </section>
   );
 }

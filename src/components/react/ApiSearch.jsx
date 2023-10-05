@@ -1,6 +1,7 @@
 import { useState } from "react";
 import usePublicApis from "./hooks/use-public-apis";
 import { prettyPrintJson } from "pretty-print-json";
+import "pretty-print-json/css/pretty-print-json.css";
 
 export default function ApiSearch({ searchExamples = [] }) {
   const { apiSearchResponse, search } = usePublicApis();
