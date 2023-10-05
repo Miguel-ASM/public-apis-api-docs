@@ -11,15 +11,15 @@ const searchExamples = [
 ];
 ---
 
-<Layout title="The public APIs API">
+<Layout title="The public APIs API" metaDescription="An API to search for publicly available APIs">
   <Hero />
   <div class="flex flex-col gap-y-12 w-full lg:px-32">
     <Search
-      client:idle
+      client:only
       searchExamples={searchExamples}
     />
     <ApiSearch
-      client:idle
+      client:only
     />
   </div>
 </Layout>
