@@ -7,13 +7,12 @@ import "./Search.css";
 export default function Search({ searchExamples = [] }) {
   const [submitEnabled, setsubmitEnabled] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const { apiSearchResponse, search } = usePublicApis();
+  const { apiSearchResponse, search, paginate, isSearching, isPaginating } =
+    usePublicApis();
   const { results, page_size, total_hits } = apiSearchResponse;
 
   const pageCount =
     total_hits !== undefined ? Math.ceil(total_hits / page_size) : 0;
-
-  console.log(pageCount);
 
   const submitSearch = async (e) => {
     e.preventDefault();
@@ -21,11 +20,17 @@ export default function Search({ searchExamples = [] }) {
     const query = formData.get("query");
     if (!query) return;
     await search({ query });
+    setCurrentPage(1);
     e.target.reset();
   };
 
   const onSearchInputChange = (e) => {
     setsubmitEnabled(!!e.target.value);
+  };
+
+  const onPageChange = ({ selected }) => {
+    paginate(selected + 1);
+    setCurrentPage(selected + 1);
   };
 
   return (
@@ -60,39 +65,49 @@ export default function Search({ searchExamples = [] }) {
           </button>
         </div>
       </form>
-      <ul className="cards-container w-full pt-12">
-        {results.map((result) => (
-          <li>
-            <a href={result.url} target="_blank" rel="noopener noreferrer">
-              <div className="flex h-[200px] flex-col justify-between rounded-lg bg-indigo-100 shadow-lg">
-                <div className="px-6 py-4">
-                  <h3 className="mb-2 text-xl font-bold">{result.name}</h3>
-                  <p className="text-base text-gray-700">
-                    {result.description}
-                  </p>
+      <div className="relative">
+        {isPaginating && (
+          <div className="absolute flex h-full w-full items-center justify-center bg-gray-100 opacity-50">
+            <div className="h-[100px] w-[100px] animate-spin rounded-full border-[10px] border-indigo-100 border-t-indigo-500" />
+          </div>
+        )}
+        <ul className="cards-container w-full pb-6 pt-12">
+          {results.map((result) => (
+            <li>
+              <a href={result.url} target="_blank" rel="noopener noreferrer">
+                <div className="flex h-[200px] flex-col justify-between rounded-lg bg-indigo-100 shadow-lg">
+                  <div className="px-6 py-4">
+                    <h3 className="mb-2 text-xl font-bold">{result.name}</h3>
+                    <p className="text-base text-gray-700">
+                      {result.description}
+                    </p>
+                  </div>
+                  <div className="px-6 pb-2 pt-4">
+                    <span className="mb-2 mr-2  inline-block rounded-full bg-white px-3 py-1 text-sm font-semibold">
+                      {result.category}
+                    </span>
+                  </div>
                 </div>
-                <div className="px-6 pb-2 pt-4">
-                  <span className="mb-2 mr-2  inline-block rounded-full bg-white px-3 py-1 text-sm font-semibold">
-                    {result.category}
-                  </span>
-                </div>
-              </div>
-            </a>
-          </li>
-        ))}
-      </ul>
-      <ReactPaginate
-        containerClassName="w-full flex justify-between px-20"
-        activeClassName="bg-indigo-500"
-        breakLabel="..."
-        nextLabel="next >"
-        forcePage={currentPage - 1}
-        onPageChange={({ selected }) => setCurrentPage(selected)}
-        marginPagesDisplayed={1}
-        pageCount={pageCount}
-        previousLabel="< previous"
-        renderOnZeroPageCount={null}
-      />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      {!isSearching && (
+        <ReactPaginate
+          containerClassName="w-full flex items-center justify-center px-20 gap-x-20"
+          pageLinkClassName="p-1 h-8 min-w-[2rem] flex item-center justify-center rounded-full"
+          activeLinkClassName="bg-indigo-500 text-white"
+          forcePage={currentPage - 1}
+          onPageChange={onPageChange}
+          marginPagesDisplayed={1}
+          pageCount={pageCount}
+          previousLabel="<"
+          breakLabel="..."
+          nextLabel=">"
+          renderOnZeroPageCount={null}
+        />
+      )}
     </section>
   );
 }
