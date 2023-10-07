@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import Search from "../components/react/Search.jsx";
 import ApiSearch from "../components/react/ApiSearch";
+import { t } from "i18next";
 
 const searchExamples = [
   "videogames and comics",
@@ -15,6 +16,7 @@ const searchExamples = [
   title="The public APIs API"
   metaDescription="An API to search for publicly available APIs"
 >
+  {t("hi")}
   <Hero />
   <div class="flex w-full flex-col gap-y-12 lg:px-32">
     <Search client:only searchExamples={searchExamples} />
