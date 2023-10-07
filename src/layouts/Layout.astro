@@ -3,9 +3,6 @@ import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import logo from "../images/icons/code-svgrepo-com.svg";
 import { getLocale } from "astro-i18n-aut";
-import i18next from "i18next";
-
-const locale = getLocale(Astro.url);
 
 interface Props {
   title: string;
@@ -16,7 +13,7 @@ const { title, metaDescription } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={locale} class="h-full">
+<html lang={getLocale(Astro.url)} class="h-full">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,7 +32,7 @@ const { title, metaDescription } = Astro.props;
   <body class="flex min-h-full flex-col">
     <Header />
     <main
-      class="flex grow flex-col items-center gap-y-10 bg-white px-8 pb-12 pt-32"
+      class="flex min-h-screen grow flex-col items-center gap-y-10 bg-white px-8 pb-12 pt-32"
     >
       <slot />
     </main>
