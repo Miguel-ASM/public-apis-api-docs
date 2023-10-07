@@ -3,12 +3,18 @@ import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import Search from "../components/react/Search.jsx";
 import ApiSearch from "../components/react/ApiSearch";
+import i18next from "i18next";
+import astroI18nextConfig from "../../astro-i18next.config.mjs";
 
-const searchExamples = [
-  "videogames and comics",
-  "movies or series",
-  "natural sciences",
-];
+export function getStaticPaths() {
+  const { defaultLocale } = astroI18nextConfig;
+  return i18next.languages.map((locale) => {
+    const lang = locale !== defaultLocale ? locale : undefined;
+    return { params: { lang } };
+  });
+}
+
+console.log(Astro.params);
 ---
 
 <Layout
@@ -17,7 +23,7 @@ const searchExamples = [
 >
   <Hero />
   <div class="flex w-full flex-col gap-y-12 lg:px-32">
-    <Search client:only searchExamples={searchExamples} />
+    <Search client:only />
     <ApiSearch client:only />
   </div>
 </Layout>

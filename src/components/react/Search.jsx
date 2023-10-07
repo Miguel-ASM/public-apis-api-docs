@@ -4,7 +4,7 @@ import ReactPaginate from "react-paginate";
 
 import "./Search.css";
 
-export default function Search({ searchExamples = [] }) {
+export default function Search() {
   const [submitEnabled, setsubmitEnabled] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const { apiSearchResponse, search, paginate, isSearching, isPaginating } =

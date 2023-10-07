@@ -2,32 +2,33 @@
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import logo from "../images/icons/code-svgrepo-com.svg";
+import i18next, { changeLanguage } from "i18next";
+import astroI18nextConfig from "../../astro-i18next.config.mjs";
 
 interface Props {
   title: string;
-  metaDescription:string;
+  metaDescription: string;
 }
+
+const { defaultLocale } = astroI18nextConfig;
+const { 1: pathLanguagePart } = Astro.url.pathname.split("/");
+
+const locale = i18next.languages.includes(pathLanguagePart)
+  ? pathLanguagePart
+  : defaultLocale;
+
+changeLanguage(locale);
 
 const { title, metaDescription } = Astro.props;
 ---
 
 <!doctype html>
-<html
-  lang="en"
-  class="h-full"
->
+<html lang={i18next.language} class="h-full">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <meta name="description" content={metaDescription}>
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href={logo.src}
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={metaDescription} />
+    <link rel="icon" type="image/svg+xml" href={logo.src} />
     <title>{title}</title>
     <style>
       .cards-container {
@@ -38,10 +39,10 @@ const { title, metaDescription } = Astro.props;
     </style>
   </head>
 
-  <body class="flex flex-col min-h-full">
+  <body class="flex min-h-full flex-col">
     <Header />
     <main
-      class="grow bg-white pt-32 pb-12 px-8 flex flex-col gap-y-10 items-center"
+      class="flex grow flex-col items-center gap-y-10 bg-white px-8 pb-12 pt-32"
     >
       <slot />
     </main>
