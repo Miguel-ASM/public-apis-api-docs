@@ -5,10 +5,10 @@ import { LanguageSelector as LanguageSelect } from "astro-i18next/components";
 ---
 
 <label class="relative">
-  <span class="absolute left-3 -z-10 flex h-full items-center">
+  <span class="absolute left-3 top-1/2 -z-10 -translate-y-1/2 items-center">
     <LanguageIcon />
   </span>
   <LanguageSelect
-    class="w-48 cursor-pointer rounded border bg-transparent py-2 pl-10 pr-2 outline-none transition-colors duration-150 hover:border-indigo-500"
+    class="w-8 cursor-pointer rounded border bg-transparent py-2 pl-10 pr-2 text-transparent outline-none transition-colors duration-150 hover:border-indigo-500 sm:w-48 sm:text-black"
   />
 </label>
