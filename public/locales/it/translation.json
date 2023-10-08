@@ -1,0 +1,31 @@
+{
+  "header": {
+    "links": { "github": "Codice sorgente" }
+  },
+  "hero": {
+    "h1": "L'API del repository delle API pubbliche",
+    "subtitleParagraph": {
+      "1": "Un'API di ricerca alimentata dall'IA per interrogare il",
+      "2": "dataset delle API pubbliche"
+    },
+    "ctas": {
+      "primary": "Usa lo strumento di ricerca",
+      "or": "o",
+      "secondary": "Usa il punto API"
+    }
+  },
+  "search": {
+    "h2": "Cerca",
+    "search_input_placeholder": "Che tipo di API stai cercando per il tuo prossimo progetto?",
+    "search_input_title": "Ricerca API",
+    "search_submit_button": "Cerca"
+  },
+  "search_api": {
+    "h2": "Punto API",
+    "submit_button": "Invia",
+    "response_title": "RISPOSTA:"
+  },
+  "footer": {
+    "text": "L'API del repository delle API pubbliche"
+  }
+}

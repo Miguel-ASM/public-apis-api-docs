@@ -1,0 +1,31 @@
+{
+  "header": {
+    "links": { "github": "Code source" }
+  },
+  "hero": {
+    "h1": "L'API du dépôt des API publiques",
+    "subtitleParagraph": {
+      "1": "Une API de recherche alimentée par l'IA pour interroger le",
+      "2": "jeu de données des API publiques"
+    },
+    "ctas": {
+      "primary": "Utilisez l'outil de recherche",
+      "or": "ou",
+      "secondary": "Utilisez le point d'accès API"
+    }
+  },
+  "search": {
+    "h2": "Rechercher",
+    "search_input_placeholder": "Quel type d'API recherchez-vous pour votre prochain projet ?",
+    "search_input_title": "Recherche d'API",
+    "search_submit_button": "Rechercher"
+  },
+  "search_api": {
+    "h2": "Point d'accès API",
+    "submit_button": "Envoyer",
+    "response_title": "RÉPONSE :"
+  },
+  "footer": {
+    "text": "L'API du dépôt des API publiques"
+  }
+}
