@@ -10,5 +10,11 @@
       "or": "o",
       "secondary": "prueba la API de búsqueda"
     }
+  },
+  "search": {
+    "h2": "Búsqueda",
+    "search_input_placeholder": "¿Qué tipo de API necesitas para tu proyecto?",
+    "search_input_title": "Búsqueda de APIs",
+    "search_submit_button": "Buscar"
   }
 }
