@@ -2,11 +2,13 @@ import { useState } from "react";
 import usePublicApis from "./hooks/use-public-apis";
 import { prettyPrintJson } from "pretty-print-json";
 import "pretty-print-json/css/pretty-print-json.css";
+import { useTranslation } from "react-i18next";
 
 export default function ApiSearch({ searchExamples = [] }) {
   const { apiSearchResponse, search } = usePublicApis();
 
   const [submitEnabled, setsubmitEnabled] = useState(false);
+  const { t } = useTranslation();
 
   const showResponse = apiSearchResponse.page_size !== undefined;
 
@@ -26,7 +28,7 @@ export default function ApiSearch({ searchExamples = [] }) {
   return (
     <section id="search-api-section" className="flex w-full flex-col">
       <h2 className="mb-4 text-3xl font-bold tracking-tight text-gray-900">
-        API endpoint
+        {t("search_api.h2")}
       </h2>
       <form
         id="apiForm"
@@ -69,13 +71,13 @@ export default function ApiSearch({ searchExamples = [] }) {
             className="h-full w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             type="submit"
           >
-            Send
+            {t("search_api.submit_button")}
           </button>
         </div>
       </form>
       <div className="w-full rounded-lg border-2 border-indigo-600 p-3">
         <h3 className="mb-4 text-xl font-bold tracking-tight text-gray-900">
-          RESPONSE:
+          {t("search_api.response_title")}
         </h3>
         {showResponse && (
           <pre

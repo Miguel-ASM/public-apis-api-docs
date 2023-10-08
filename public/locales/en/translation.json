@@ -1,4 +1,7 @@
 {
+  "header": {
+    "links": { "github": "Source code" }
+  },
   "hero": {
     "h1": "The public APIs repo API",
     "subtitleParagraph": {
@@ -16,5 +19,13 @@
     "search_input_placeholder": "What kind of API are you looking for to use in your next project?",
     "search_input_title": "APIs search",
     "search_submit_button": "Search"
+  },
+  "search_api": {
+    "h2": "API endpoint",
+    "submit_button": "Send",
+    "response_title": "RESPONSE:"
+  },
+  "footer": {
+    "text": "The public APIs repo API"
   }
 }

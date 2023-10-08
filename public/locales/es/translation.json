@@ -1,4 +1,7 @@
 {
+  "header": {
+    "links": { "github": "Código del proyecto" }
+  },
   "hero": {
     "h1": "La API del repo de APIs públicas",
     "subtitleParagraph": {
@@ -16,5 +19,13 @@
     "search_input_placeholder": "¿Qué tipo de API necesitas para tu proyecto?",
     "search_input_title": "Búsqueda de APIs",
     "search_submit_button": "Buscar"
+  },
+  "search_api": {
+    "h2": "Endpoint de la API",
+    "submit_button": "Enviar",
+    "response_title": "RESPUESTA:"
+  },
+  "footer": {
+    "text": "La API del repo de APIs públicas"
   }
 }

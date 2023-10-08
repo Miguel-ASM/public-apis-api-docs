@@ -1,15 +1,16 @@
 ---
 import githubIcon from "../images/icons/github-142-svgrepo-com-white.svg";
 import linkedinIcon from "../images/icons/linkedin-svgrepo-com-white.svg";
+import { t } from "i18next";
 ---
 
-<footer class="shadow bg-gray-800 px-6 lg:px-8 py-4 h-20">
-  <div class="w-full flex items-center justify-between">
-    <span class="text-sm sm:text-center text-white">
-      The public APIs repo API
+<footer class="h-20 bg-gray-800 px-6 py-4 shadow lg:px-8">
+  <div class="flex w-full items-center justify-between">
+    <span class="text-sm text-white sm:text-center">
+      {t("footer.text")}
     </span>
     <ul
-      class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-400 sm:mt-0 gap-x-6"
+      class="mt-3 flex flex-wrap items-center gap-x-6 text-sm font-medium text-gray-400 sm:mt-0"
     >
       <li>
         <a
