@@ -1,0 +1,28 @@
+.copyPastaBtn {
+  position: relative;
+  display: inline-block;
+}
+
+.copyPastaBtn .tooltip {
+  width: auto;
+  background-color: rgb(79 70 229);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 115%;
+}
+
+.copyPastaBtn .tooltip::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent rgb(79 70 229);
+}

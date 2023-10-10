@@ -3,12 +3,16 @@ import usePublicApis from "./hooks/use-public-apis";
 import { prettyPrintJson } from "pretty-print-json";
 import "pretty-print-json/css/pretty-print-json.css";
 import { useTranslation } from "react-i18next";
+import CopyIcon from "./CopyIcon";
+import CopyPastaBtn from "./CopyPastaBtn/CopyPastaBtn";
+
+const APIS_URL = "https://public-apis-api.onrender.com";
 
 export default function ApiSearch({ searchExamples = [] }) {
-  const { apiSearchResponse, search } = usePublicApis();
+  const [showCopy, setShowCopy] = useState(false);
 
-  const [submitEnabled, setsubmitEnabled] = useState(false);
   const { t } = useTranslation();
+  const { apiSearchResponse, search } = usePublicApis();
 
   const showResponse = apiSearchResponse.page_size !== undefined;
 
@@ -25,11 +29,30 @@ export default function ApiSearch({ searchExamples = [] }) {
     e.target.reset();
   };
 
+  const copyAPIURl = () => {
+    navigator.clipboard.writeText(APIS_URL);
+  };
+
   return (
     <section id="search-api-section" className="flex w-full flex-col">
       <h2 className="mb-4 text-3xl font-bold tracking-tight text-gray-900">
         {t("search_api.h2")}
       </h2>
+      <div
+        className="relative mb-4 min-h-fit rounded-lg bg-indigo-50 px-6 py-3 sm:px-3"
+        onMouseLeave={() => setShowCopy(false)}
+        onMouseEnter={() => setShowCopy(true)}
+      >
+        <p>
+          The API is freely available and deployed at{" "}
+          <span className="font-medium">{APIS_URL}</span>
+        </p>
+        {showCopy && (
+          <div className="absolute right-3 top-3">
+            <CopyPastaBtn text={APIS_URL} />
+          </div>
+        )}
+      </div>
       <form
         id="apiForm"
         className="mb-4 flex w-full flex-col gap-x-4 gap-y-4 sm:flex-row sm:items-stretch"
