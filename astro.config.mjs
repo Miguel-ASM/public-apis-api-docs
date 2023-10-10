@@ -13,10 +13,9 @@ const locales = Object.fromEntries(
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://example.com",
-  trailingSlash: "never",
+  trailingSlash: "always",
   build: {
-    format: "file",
+    format: "directory",
   },
   integrations: [
     i18n({
