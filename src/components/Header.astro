@@ -2,6 +2,7 @@
 import LanguageSelector from "./LanguageSelector.astro";
 import logo from "../images/icons/code-svgrepo-com.svg";
 import githubIcon from "../images/icons/github-142-svgrepo-com.svg";
+import { localizePath } from "astro-i18next";
 import { t } from "i18next";
 ---
 
@@ -10,7 +11,7 @@ import { t } from "i18next";
 >
   <nav class="flex items-center justify-between px-8 py-6" aria-label="Global">
     <div class="flex lg:flex-1">
-      <a href="/" class="-m-1.5 p-1.5">
+      <a href={localizePath("/")} class="-m-1.5 p-1.5">
         <span class="sr-only">Public APIs API</span>
         <img class="h-8 w-8" src={logo.src} alt="logo" />
       </a>
